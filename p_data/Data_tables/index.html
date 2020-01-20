@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Data Inputan Mahasiswa Permohonan Kerja Praktek</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">	
+        <link rel="stylesheet" href="css/dataTables.bootstrap.css">
+    </head>
+    <body>
+<?php
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = 'login';
+
+$konek_db = mysql_connect($host, $user, $password);
+$find_db = mysql_select_db($database);
+?>
+        <div class="container">
+            <h2 class="text-center">Hasil Inputan Permohonan Praktek Kerja</h2>
+            <h2 class="text-center"> &nbsp </h2>
+            <div class="box-body table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Lampiran</th>
+							<th>Nama Jabatan</th>
+							<th>Nama Lembaga</th>
+                            <th>Alamat Lembaga</th>
+                            <th>Nama Kota Lembaga</th>
+							<th>Nama Mahasiswa</th>
+                            <th>NIM Mahasiswa</th>
+                            <th>Nama Departemen</th>
+                            <th>Program Studi Mahasiswa</th>
+                            <th>Semester Mahasiswa</th>
+							<th>Alamat Mahasiswa</th>
+                            <th>No Tlp Mahasiswa</th>
+                            <th>Tgl Mulai Praktek</th>
+                            <th>Tgl Selesai Praktek</th>
+                            <th>Kelengkapan Mahasisawa</th>
+							<th>Edit</th>
+                            <th>Cetak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <tr>
+<?php 
+$query = "select * from isi_surat";
+$hasil = mysql_query ($query);
+
+while ($data = mysql_fetch_array ($hasil)){
+$id = $data['id'];
+echo "
+<tr>
+<td>".$data['id']."</td>
+<td>".$data['lampiran']."</td>
+<td>".$data['jabatan']."</td>
+<td>".$data['lembaga']."</td>
+<td>".$data['alamat']."</td>
+<td>".$data['kota']."</td>
+<td>".$data['nama']."</td>
+<td>".$data['nim']."</td>
+<td>".$data['departemen']."</td>
+<td>".$data['program']."</td>
+<td>".$data['semester']."</td>
+<td>".$data['alamat_siswa']."</td>
+<td>".$data['hp']."</td>
+<td>".$data['tgl_satu']."</td>
+<td>".$data['tgl_dua']."</td>
+<td>".$data['isi']."</td>
+<td>edit</td>
+<td>hapus</td>
+
+</tr>
+";
+}
+?>
+									
+                        </tr>                                            
+                    </tbody>
+                   
+                </table>
+            </div><!-- /.box-body -->
+        </div>	
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/dataTables.bootstrap.js"></script>	
+        <script type="text/javascript">
+            $(function() {
+                $('#example1').dataTable();
+            });
+        </script>
+    </body>
+</html>
